@@ -1,0 +1,61 @@
+package class06;
+
+public class CourseDef {
+	//The this keyword refers to the current object in a method or constructor.
+	//final indicates that the value of the variable won't change
+	public static final double[] properGrades = {2.0, 3.0, 3.5, 4.0, 4.5, 5.0};
+	  final String id;
+	  final int credits;
+	  double grade;
+	  
+	  public CourseDef(String id, int number) throws IllegalArgumentException {
+		  if(id.isBlank()) throw new IllegalArgumentException("ID CAN NOT BE BLANK");
+		  else this.id = id;
+		  if(number<1 || number>10) throw new  IllegalArgumentException("NUMBER HAS TO BE BETWEEN 1 AND 10");
+		  else this.credits = number;
+		  grade = 2.0;}//WE SET EXCEPTIONS AND INITIAl VALUES
+	  	
+		
+	  public static boolean isInArray(double targetNumber, double[] arr) {
+		  for (Object x : arr) {
+	            if (x.equals(targetNumber)) return true;
+	        }
+	        return false;}
+	  
+	  public static boolean isGradeAcceptable(double grade) {
+	        return isInArray(grade, properGrades);
+	    }//CHECK IF THE GRADE VALUE IS AN ELEMENT OF ACCEPTABLE GRADES - RETURN TRUE IF IT IS
+		
+	    public boolean setGrade(double grade) {
+	        if (isGradeAcceptable(grade)) {
+	            this.grade = grade;
+	            return true;
+	        }
+	        return false;
+	    }
+	  
+	  public String getID() {
+		  return id;
+	  }
+	  
+	  public int getNumber() {
+		  return credits;
+	  }
+	  
+	  public double getGrade() {
+		  return grade;
+	  }
+	  //GET THE VALUES 
+	  
+	   public String toString() {
+	        return "\n" +
+	                "   \"Course ID\" : \"" + id + "\",\n" +
+	                "   \"Course Credits\": " + credits + ",\n" +
+	                "   \"Grade\": " + grade + "\n";
+	    }
+}
+	  	
+	  
+	
+
+
