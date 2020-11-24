@@ -1,0 +1,53 @@
+package class06;
+
+import static java.lang.System.out;
+
+import class06.CourseDef;
+import class06.StudentExp;
+
+public class Test {
+	
+	public static void main(String[] args) {
+		CourseDef[] courses = {
+			new CourseDef("Computer System Organization", 2),
+			new CourseDef("Mathematical Analysis I", 5),
+			new CourseDef("Structural and Object oriented Programming", 5),
+			new CourseDef("General Physics I", 3),
+			new CourseDef("Logic for IT Specialists", 4),
+			new CourseDef("Algebra and Analytic Geometry", 5)};
+		
+		out.println("COURSES : ");
+		for(CourseDef course : courses) {
+			out.println(course);
+		}
+		out.println();
+		
+		 StudentExp student = new StudentExp("Winston", "Smith", 1994);
+		 courses[0].setGrade(2);
+		 courses[1].setGrade(2);
+		 courses[2].setGrade(5);
+		 courses[3].setGrade(2);
+		 courses[4].setGrade(4);
+		 courses[5].setGrade(5);
+		 
+	        out.println("Student : ");
+	        for (CourseDef course : courses) {
+	            student.addCourse(course, course.getGrade());
+	        }
+	        out.println(student);
+	        out.println();
+
+	        out.println();
+		 
+	        out.println("Student's Average Grade : ");
+	        out.println(student.getAverageGrade());
+	        out.println();
+		
+		
+		
+	}
+	
+
+	
+
+}
