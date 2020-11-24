@@ -1,0 +1,75 @@
+package class06;
+
+import java.util.ArrayList;
+
+import class06.CourseDef;
+
+public class StudentExp {
+
+	final String firstName;
+	final String lastName;
+	int birthYear;
+	ArrayList<CourseDef> courses = new ArrayList<>();
+	
+	public StudentExp(String firstName, String lastName, int birthYear) {
+		if(firstName.isBlank()) throw new IllegalArgumentException("FIRST NAME CAN NOT BE BLANK");
+		else this.firstName = firstName;
+		if(lastName.isBlank()) throw new IllegalArgumentException("LAST NAME CAN NOT BE BLANK");
+		else this.lastName = lastName;
+		if(birthYear<1990 || birthYear>2005) throw new IllegalArgumentException("BIRTH YEAR MUST BE BETWEEN 1990 AND 2005");
+		else this.birthYear = birthYear;}
+		//CHECK THE VALUES AND IF THEY ARE PROPER SET VALUES
+	
+	public boolean addCourse(CourseDef course, double grade) {
+		if(courses.size() < 20) {
+			boolean unique = true;
+			for(CourseDef x : courses) {
+				if(x.getID().equals(course.getID())) {
+					unique = false;
+				break;
+			}
+		}
+		if(unique) {
+			if(course.setGrade(grade)) {
+				courses.add(course);
+				return true;
+			  }
+			
+		   }
+		
+		}
+		return false;
+	}
+	//ADD COURSE IF THERE IS ROOM FOR IT OR NO OTHER COURSE IN THE ARRAY HAS THE SAME CODE
+	
+	public double getAverageGrade() {
+		double sum = 0;
+		for(CourseDef course : courses) {
+			sum += course.getGrade();
+			}
+		return sum/courses.size();
+	}
+	//IF THE COURSE IS ACCEPTABLE ADD THE GRADE OF THE COURSE TO THE SUM, DIVIDE THE SUM TO THE COURSE SIZE TO 
+	//GET THE AVARAGE GRADE
+	
+    public String toString() {
+        String print = "\n" +
+                "   \"First Name\": " + "\"" + firstName + "\",\n" +
+                "   \"Last Name\": " + "\"" + lastName + "\",\n" +
+                "   \"Birth Year\": " + birthYear + ",\n" +
+                "   \"Courses\": [\n";
+        for (int i = 0; i < courses.size(); i++) {
+            CourseDef course = courses.get(i);
+            print += "   {\n" +
+                    "       \"Couse ID\": \"" + course.getID() + "\",\n" +
+                    "       \"Course Credits\": " + course.getNumber() + ",\n" +
+                    "       \"Grade\": " + course.getGrade() + "\n" +
+                    "   ";
+            if (i != courses.size() - 1) {
+                print += ",\n";
+            }
+        }
+        print += "]\n}";
+        return print;
+    }
+}
